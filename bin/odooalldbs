@@ -1,0 +1,15 @@
+#!/bin/bash
+################################################################################
+# A sentence or two about the script
+################################################################################
+
+source /etc/odoo/odoo.tools
+
+##
+# Modified legacy row:
+#sudo -u postgres psql -At -c "SELECT datname FROM pg_database WHERE datistemplate = false AND 'postgres' <> datname;" postgres
+# This seem to do the intended thing:
+sudo -u postgres psql -At -c "SELECT datname FROM pg_database WHERE datistemplate = false AND 'postgres' <> datname;"
+
+##
+exit 0 # Success

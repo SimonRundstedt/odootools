@@ -1,0 +1,13 @@
+#!/bin/bash
+################################################################################
+# A sentence or two about the script
+################################################################################
+
+source /etc/odoo/odoo.tools
+
+##
+
+find -L $ADDONS_PATH_PREFIX/odoo-addons -type f -exec grep -Hn $1 {} \;
+
+##
+exit 0 # Success

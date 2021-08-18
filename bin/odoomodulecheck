@@ -1,0 +1,21 @@
+#!/bin/bash
+################################################################################
+# A sentence or two about the script
+################################################################################
+
+echo "Moved functionality to own file. Not tested yet. Exiting..."
+exit 1
+
+source /etc/odoo/odoo.tools
+
+##
+
+for DB in `sudo su postgres -c "psql -At -c \"select datname from pg_database where datistemplate = false and 'postgres' <> datname;\" postgres"`
+do
+    if odooupd -d $DB -c $1; then
+        echo $DB
+    fi
+done
+
+##
+exit 0 # Success

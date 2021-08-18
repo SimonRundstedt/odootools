@@ -1,0 +1,22 @@
+#!/bin/bash
+################################################################################
+# A sentence or two about the script
+################################################################################
+
+#source /etc/odoo/odoo.tools
+
+EDITOR="nano -l" # -n should be available in at least 20.04 and later
+
+if [ $# -gt 0 ]
+  # Assume the first is the editor
+  then
+		echo "Editor argument set to: $1"
+    EDITOR=$1
+	else
+		echo "No argument set. Using editor: $1"
+fi
+
+sudo $EDITOR /var/log/odoo/odoo-server.log
+
+##
+exit 0 # Success

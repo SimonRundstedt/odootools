@@ -1,0 +1,20 @@
+#!/bin/bash
+################################################################################
+# A sentence or two about the script
+################################################################################
+
+source /etc/odoo/odoo.tools
+
+##
+
+CWD=$(pwd)
+cd $ADDONS_PATH_PREFIX
+local PROJECTS=$1
+for PROJECT in $(echo $PROJECTS | tr "," " "); do
+    sudo mkdir -p --mode=g+w $ADDONS_PATH_PREFIX/$PROJECT
+    sudo chown odoo:odoo $ADDONS_PATH_PREFIX/$PROJECT
+    git clone -b $DEFAULTBRANCH git@github.com:vertelab/$PROJECT.git
+done
+
+##
+exit 0 # Success

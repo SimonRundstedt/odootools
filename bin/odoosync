@@ -1,0 +1,32 @@
+#!/bin/bash
+################################################################################
+# A sentence or two about the script
+################################################################################
+
+source /etc/odoo/odoo.tools
+
+usage() { echo "Usage: $0 [-p <project>] [-h <host>]" 1>&2; exit 1; }
+
+##
+
+local OPTIND
+local OPTARG
+local option
+while getopts ":p:h:" option; do
+    case $option in
+        p) ODOOPROJECT=${OPTARG%/} ; echo "Project: $option $ODOOPROJECT" ;;
+        h) HOST=${OPTARG} ; echo "Host: $option $OPTARG" ;;
+        \:) echo "Option $option requires an argument" ; return ;;
+        \?) echo "Illegal argument ${option}::${OPTARG}" ; return ;;
+    esac
+done
+
+if [ -z "$ODOOPROJECT" ] ; then
+  echo "You have to set -p option to continue"
+else
+  sudo chown odoo:odoo $ADDONS_PATH_PREFIX/$ODOOPROJECT -R
+  rsync -var --delete --exclude='.git/' $ADDONS_PATH_PREFIX/$ODOOPROJECT $HOST:$ADDONS_PATH_PREFIX
+fi
+
+##
+exit 0 # Success
