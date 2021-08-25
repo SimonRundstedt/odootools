@@ -1,9 +1,21 @@
 #!/bin/bash
 ################################################################################
-# A sentence or two about the script
-################################################################################
 
-source /etc/odoo/odoo.tools
+synopsis (){
+  echo "Prints all non template databases in postgres"
+}
+usage(){
+  echo "Usage: odooalldbs"
+}
+
+## Test if conf exist so we don't garble stuff
+if [ -f /etc/odoo/odoo.tools ];
+then
+  source /etc/odoo/odoo.tools
+else
+  echo "Configuration /etc/odoo/odoo.tools not found"
+  exit -1
+fi
 
 ##
 # Modified legacy row:

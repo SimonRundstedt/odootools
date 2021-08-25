@@ -1,13 +1,25 @@
 #!/bin/bash
 ################################################################################
-# A sentence or two about the script
-################################################################################
 
-source /etc/odoo/odoo.tools
+synopsis (){
+  echo "Grep for pattern in odoo-core source code"
+}
+function usage(){
+  echo "Usage: odoofind [pattern]"
+}
+
+## Test if conf exist so we don't garble stuff
+if [ -f /etc/odoo/odoo.tools ];
+then
+  source /etc/odoo/odoo.tools
+else
+  echo "Configuration /etc/odoo/odoo.tools not found"
+  exit -1
+fi
 
 ##
 
-find -L $ADDONS_PATH_PREFIX/odoo-addons -type f -exec grep -Hn $1 {} \;
+find -L $ODOOCORE -type f -exec grep -Hn $1 {} \;
 
 ##
 exit 0 # Success

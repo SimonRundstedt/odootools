@@ -1,13 +1,24 @@
 #!/bin/bash
 ################################################################################
-# A sentence or two about the script
-################################################################################
 
-#source /etc/odoo/odoo.tools
+##
+synopsis (){
+  echo "Shorthand for performing a git pull on all projects in ADDONS_PATH_PREFIX"
+}
+usage(){
+  echo "Usage: odoogitpull"
+}
+## Test if conf exist so we don't garble stuff
+if [ -f /etc/odoo/odoo.tools ];
+then
+  source /etc/odoo/odoo.tools
+else
+  echo "Configuration /etc/odoo/odoo.tools not found"
+  exit -1
+fi
 
 ##
 
-[ -f /etc/odoo/odoo.tools ] && . /etc/odoo/odoo.tools
 if [ ! -z "$ODOOADDONS" ]; then
     CWD=`pwd`
     for p in ${ODOOADDONS//,/ }; do

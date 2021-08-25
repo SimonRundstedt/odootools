@@ -1,7 +1,14 @@
 #!/bin/bash
 ################################################################################
-# A sentence or two about the script
+# tail-follow the Odoo log.
 ################################################################################
+
+synopsis (){
+  echo "Follow the Odoo log."
+}
+usage(){
+  echo "Usage: odootail"
+}
 
 #source /etc/odoo/odoo.tools
 

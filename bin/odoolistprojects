@@ -1,11 +1,21 @@
 #!/bin/bash
 ################################################################################
-# A sentence or two about the script
-################################################################################
 
-source /etc/odoo/odoo.tools
+synopsis (){
+  echo "Shorthand for listing all projects in ADDONS_PATH_PREFIX"
+}
+usage(){
+  echo "Usage: odoolistprojects"
+}
 
-
+## Test if conf exist so we don't garble stuff
+if [ -f /etc/odoo/odoo.tools ];
+then
+  source /etc/odoo/odoo.tools
+else
+  echo "Configuration /etc/odoo/odoo.tools not found"
+  exit -1
+fi
 ##
 
 ls -d $ADDONS_PATH_PREFIX/odoo*

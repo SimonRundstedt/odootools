@@ -1,11 +1,16 @@
 #!/bin/bash
 ################################################################################
+# Template script
+################################################################################
 
+echo "Moved functionality to own file. Not tested yet. Exiting..."
+exit 1
+##
 synopsis (){
-  echo "Detects modules installed to ADDONS_PATH_PREFIX and copies to odoo.conf"
+  echo "A sentence of the purpose"
 }
-function usage(){
-  echo "Usage: odooaddons"
+usage(){
+  echo "Usage: A sample call of the script"
 }
 
 ## Test if conf exist so we don't garble stuff
@@ -16,12 +21,6 @@ else
   echo "Configuration /etc/odoo/odoo.tools not found"
   exit -1
 fi
-
 ##
-if [ ! -z "$ODOOADDONS" ]; then
-    CMD="s/^;*addons_path.*=.*/addons_path=${ODOOADDONS//"/"/"\/"}/g"
-    sudo perl -i -pe $CMD $ODOO_SERVER_CONF
-fi
-
 ##
 exit 0 # Success

@@ -1,15 +1,25 @@
 #!/bin/bash
 ################################################################################
-# A sentence or two about the script
-################################################################################
-
-source /etc/odoo/odoo.tools
-
+##
+synopsis (){
+  echo "Shorthand for cloning the target Vertel git repo containing an odoo project to ADDONS_PATH_PREFIX"
+}
+usage(){
+  echo "Usage: odoogitclone odoo-website"
+}
+## Test if conf exist so we don't garble stuff
+if [ -f /etc/odoo/odoo.tools ];
+then
+  source /etc/odoo/odoo.tools
+else
+  echo "Configuration /etc/odoo/odoo.tools not found"
+  exit -1
+fi
 ##
 
 CWD=$(pwd)
 cd $ADDONS_PATH_PREFIX
-local PROJECTS=$1
+PROJECTS=$1
 for PROJECT in $(echo $PROJECTS | tr "," " "); do
     sudo mkdir -p --mode=g+w $ADDONS_PATH_PREFIX/$PROJECT
     sudo chown odoo:odoo $ADDONS_PATH_PREFIX/$PROJECT

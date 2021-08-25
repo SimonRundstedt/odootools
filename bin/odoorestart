@@ -1,9 +1,21 @@
 #!/bin/bash
 ################################################################################
-# A sentence or two about the script
-################################################################################
 
-source /etc/odoo/odoo.tools
+synopsis (){
+  echo "Convenience function to restart the Odoo service."
+}
+usage(){
+  echo "Usage: odoorestart"
+}
+
+## Test if conf exist so we don't garble stuff
+if [ -f /etc/odoo/odoo.tools ];
+then
+  source /etc/odoo/odoo.tools
+else
+  echo "Configuration /etc/odoo/odoo.tools not found"
+  exit -1
+fi
 
 ##
 ${ODOO_RESTART}
