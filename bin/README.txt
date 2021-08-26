@@ -16,10 +16,11 @@ odoolangexport
 odoolistprojects        Tested - Maybe print on different lines?
 odoomodulecheck
 odoomoduleinstall
-odoopatch
+odoomodulesprint        Note: Python script. Doesn't yet load odoo.tools properly.
+odoopatch               Deprecate? When did anyone patch with patch files last time?
 odoorestart             Tested
-odoosetperm
+odoosetperm             Tested - Does what it says on the tin. Doesn't touch odoo core.
 odoosync
 odoosyncall
 odootail                Tested
-odooupdm
+odooupdm                Tested - Extra checks works. Get some Odoo error when running the meaty part, even manually

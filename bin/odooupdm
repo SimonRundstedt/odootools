@@ -7,14 +7,21 @@ source /etc/odoo/odoo.tools
 
 if [ $# -ne 2 ]
   then
-      echo "This script requires two input:"
+      echo "This script requires two inputs:"
       echo "  1. Target database"
       echo "  2. Comma separated list of modules to update"
-      echo "Exiting"
+      echo "Example: odooupdm client_db sale_improved,stock_additions"
+      echo "Exiting ...."
       exit 1
 fi
 
 # ---------------------------------------------------------------------------- #
+
+if [ ! $(odooalldbs | grep -E "^$1$") ]
+then
+    echo "Target database $1 not available. Exiting..."
+    exit -1
+fi
 
 ${ODOO_STOP}
 sudo su odoo -c "odoo -c ${ODOO_SERVER_CONF} --database $1 --update $2 --stop-after-init"
