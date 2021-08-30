@@ -1,12 +1,21 @@
 #!/bin/bash
 ################################################################################
-# A sentence or two about the script
-################################################################################
 
-echo "Moved functionality to own file. Not tested yet. Exiting..."
-exit 1
+synopsis (){
+  echo "A sentence of the purpose"
+}
+usage(){
+  echo "Usage: A sample call of the script"
+}
 
-source /etc/odoo/odoo.tools
+## Test if conf exist so we don't garble stuff
+# if [ -f /etc/odoo/odoo.tools ];
+# then
+#   source /etc/odoo/odoo.tools
+# else
+#   echo "Configuration /etc/odoo/odoo.tools not found"
+#   exit -1
+# fi
 
 ##
 
