@@ -1,13 +1,14 @@
 #!/bin/bash
 ################################################################################
-# A sentence or two about the script
-################################################################################
 
-echo "Moved functionality to own file. Not tested yet. Exiting..."
-exit 1
-
-source /etc/odoo/odoo.tools
-
+##
+synopsis (){
+  echo "Create a copy of target database with the email server disabled."
+  echo "Other services with test modes such as payment aquirers need to be changed manually."
+}
+usage(){
+  echo "Usage: odoocreatetestdb client_db"
+}
 ##
 
 if [ -z ${1} ];then

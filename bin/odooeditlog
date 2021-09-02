@@ -15,7 +15,7 @@ usage(){
 # No odoo.tools required atm
 #source /etc/odoo/odoo.tools
 
-EDITOR="nano -l" # -n should be available in at least 20.04 and later
+EDITOR="nano -l" # -l should be available in at least 20.04 and later
 
 if [ $# -gt 0 ]
   # Assume the first is the editor

@@ -10,7 +10,7 @@ synopsis (){
   echo "A sentence of the purpose"
 }
 usage(){
-  echo "Usage: A sample call of the script"
+  echo "Usage: $0 [flags]"
 }
 
 ## Test if conf exist so we don't garble stuff

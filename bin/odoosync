@@ -23,10 +23,12 @@ done
 
 if [ -z "$ODOOPROJECT" ] ; then
   echo "You have to set -p option to continue"
-else
-  sudo chown odoo:odoo $ADDONS_PATH_PREFIX/$ODOOPROJECT -R
-  rsync -var --delete --exclude='.git/' $ADDONS_PATH_PREFIX/$ODOOPROJECT $HOST:$ADDONS_PATH_PREFIX
+  exit 1
 fi
+
+sudo chown odoo:odoo $ADDONS_PATH_PREFIX/$ODOOPROJECT -R
+# Assumes the layout of the sync target is the same as local:
+rsync -var --delete --exclude='.git/' $ADDONS_PATH_PREFIX/$ODOOPROJECT $HOST:$ADDONS_PATH_PREFIX
 
 ##
 exit 0 # Success

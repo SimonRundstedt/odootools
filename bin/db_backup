@@ -2,7 +2,7 @@
 ################################################################################
 ##
 synopsis (){
-  echo "Make a backup all databases on the Odooinstallations."
+  echo "Make a backup of all databases on the Odoo installation."
 }
 usage(){
   echo "Usage: db_backup"
