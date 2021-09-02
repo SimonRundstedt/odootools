@@ -8,18 +8,26 @@
 # DATABASES=<default databases [list] >
 # MODULES=<default modules>
 
-##
+## Odoo convenience definitions
+# The Odoo deb-file contain where Odoo installs different files to.
+ODOOCORE=/usr/lib/python3/dist-packages/odoo
 ODOO_SERVER_CONF=/etc/odoo/odoo.conf
+
+# service and systemctl are equivalent in this case
 ODOO_START='sudo systemctl start odoo.service'
-ODOO_STOP='sudo service odoo stop'# servie and systemctl are equivalent in this case
+ODOO_STOP='sudo service odoo stop'
 ODOO_RESTART='sudo service odoo restart'
 
-#
+## None Odoo specific
 ADDONS_PATH_PREFIX=/opt/odooaddons
+ODOO_BACKUP_DIR=/var/backups
 
 # Git related definitions
 DEFAULTBRANCH=14.0
 
 # List addons directories in ODOOADDONS-variable
-export ODOOADDONS=`ls -d /usr/share/odoo-* /usr/share/odooext-* 2> /dev/null | grep -v odoo-addons | paste -sd ","`
-export ODOOHOSTS="azzar.net"
+export ODOOADDONS=`ls -d $ADDONS_PATH_PREFIX/odoo-* $ADDONS_PATH_PREFIX/odooext-* 2> /dev/null | grep -v odoo-addons | paste -sd ","`
+
+# If current installation is a staging environment ODOOSYNCTARGET defines the
+# production host.
+export ODOOSYNCTARGET=""
