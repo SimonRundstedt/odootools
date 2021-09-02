@@ -29,10 +29,10 @@ def print_modules(modules):
     '''
     Print a sorted list of all modules
     '''
-    module_basenames = [ os.path.basename(module) for m in modules ]
+    module_basenames = [ os.path.basename(m) for m in modules ]
     module_basenames.sort()
-    for module in module_basenames:
-        print("{}".format((modules))
+    for m in module_basenames:
+        print("{}".format((m)))
     # for module in modules:
     #         print("{}".format(os.path.basename(module))
     # for entry in entries:
@@ -52,18 +52,20 @@ def getmodules(modulespaths):
     list :
         list containing full paths for all found modules.
     '''
+    allentries = []
     for top in modulespaths:
 #        # Single row
 #        entries = ( e for e in (os.path.join(top,X) for X in os.listdir(top)) if os.path.isdir(e)  and os.path.exists(os.path.join(e,MANIFEST)))
 #        # Double row
         subentries = (os.path.join(top,X) for X in os.listdir(top))
         entries = [ e for e in subentries if os.path.isdir(e) and os.path.exists(os.path.join(e,MANIFEST)) ]
-        return entries
+        allentries += entries
+    return allentries
 
 #%% ----------------------------------------------------------------------------
 
 odooconf = configparser.ConfigParser()
 odooconf.read(ODOOCONF) # TODO: Check return value
 modules = getmodules( odooconf["options"]["addons_path"].split(",") )
-modules.sort(lambda k : os.path.basename(module) )
+modules.sort(key= lambda k : os.path.basename(k) )
 print_modules(modules)
