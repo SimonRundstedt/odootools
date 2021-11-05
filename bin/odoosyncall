@@ -17,8 +17,8 @@ fi
 
 
 ##
-SHORT_ARGS='h:'
-LONG_ARGS='help,host:'# Comma separated
+SHORT_ARGS='h:u'
+LONG_ARGS='help,host:user'# Comma separated
 
 # Dev. note: Based on /usr/share/doc/util-linux/examples/getopt-parse.bash
 # And getopt != getopts
@@ -37,6 +37,9 @@ do
 		'-h' | '--host' )
 			HOST=$2
             shift 2 ; continue ;;
+        '-u' | '--user' )
+                REMOTEUSER=$2
+                shift 2 ; continue ;;
 		'--help' )
 			synopsis
             usage
@@ -57,17 +60,21 @@ done
 # do
 # 	echo $arg
 # done
-if [ ! -z "$HOST" ]; then
-    echo "Sync target not set. Exiting ..."
+if [ -z "$HOST" ]; then
+    echo "Sync target not set. Exiting ..." >&2
     exit 1
 fi
+if [ -z "$REMOTEUSER" ]; then
+    REMOTEUSER=$USER
+    echo "Remote user not set. Using current user:" $REMOTEUSER
+fi
+
 ## -------------------------------------------------------------------------- ##
 
-if [ ! -z "$ODOOADDONS" ]; then
+if [ -n "$ODOOADDONS" ]; then
     for p in ${ODOOADDONS//,/ }; do
         echo -n "$p "
-        sudo chown odoo:odoo $p -R
-        rsync -ar --delete --exclude='.git/' $p $HOST:$ADDONS_PATH_PREFIX
+        odoosync -h $HOST -p $p -u $REMOTEUSER
     done
 fi
 

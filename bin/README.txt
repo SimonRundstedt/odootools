@@ -20,8 +20,8 @@ odoomodulesprint        Tested - Result: Print extra modules, not core. Note: Py
 odoopatch               Deprecate? When did anyone patch with patch files last time?
 odoorestart             Tested
 odoosetperm             Tested - Does what it says on the tin. Doesn't touch odoo core.
-odoosync                Tested - --||--
-odoosyncall             Tested - --||-- , .gitignore is transferred too.
+odoosync                Tested* - Changed code. Need retesting
+odoosyncall             Tested* - --||-- , .gitignore is transferred too.
 odootail                Tested
 odooupd.py              Tested - Light smoke test passed. Note: Requires root. Doesn't call sudo internally. Note: Many other commands depend on this script. Note: Some functionality is covered by other commands. Eg: PASSWD command which can be changed to odooadminpw
 odooupdm                Tested - Extra checks works. Get some Odoo error when running the meaty part, even manually

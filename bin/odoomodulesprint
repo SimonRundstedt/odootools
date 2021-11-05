@@ -19,7 +19,7 @@ def usage():
 #%% ----------------------------------------------------------------------------
 '''
     NOTE: About this implementation: It is standalone and cannot easy leverage
-    odoo.tools to
+    odoo.tools to fetch variables.
 '''
 MANIFEST = "__manifest__.py"
 ODOOCONF = "/etc/odoo/odoo.conf"
