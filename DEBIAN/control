@@ -1,0 +1,10 @@
+Package: odootools
+Version: 0.1
+Architecture: all
+Maintainer: Simon Rundstedt <simon.rundstedt@vertel.se>
+Description: Tools to help manage an Odoo installation.
+ This package contain tool and utilities to manage an Odoo installation as
+ applicable at Vertel AB.
+Priority: optional
+Pre-Depends: odoo (>= 14.0.0)
+Depends: git python3-pip build-essential wget python3-dev python3-venv python3-wheel libxslt-dev libjpeg-dev libzip-dev libldap2-dev libsasl2-dev python3-setuptools node-less libpq-dev
